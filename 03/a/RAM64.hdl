@@ -1,0 +1,35 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/03/a/RAM64.hdl
+
+/**
+ * Memory of 64 registers, each 16 bit-wide. Out holds the value
+ * stored at the memory location specified by address. If load==1, then 
+ * the in value is loaded into the memory location specified by address 
+ * (the loaded value will be emitted to out from the next time step onward).
+ */
+
+CHIP RAM64 {
+    IN in[16], load, address[6];
+    OUT out[16];
+
+    PARTS:
+    // Put your code here:
+
+    // Seleciona em qual Ram de 8 o registrador em que o input deve ser carregado está:
+    DMux8Way(in=load,sel=address[3..5],a=selecionaRam0,b=selecionaRam1,c=selecionaRam2,d=selecionaRam3,e=selecionaRam4,f=selecionaRam5,g=selecionaRam6,h=selecionaRam7);
+
+    // Carrega o registrador selecionado com a entrada:
+    RAM8(in=in,load=selecionaRam0,address=address[0..2],out=outRAM0);
+    RAM8(in=in,load=selecionaRam1,address=address[0..2],out=outRAM1);
+    RAM8(in=in,load=selecionaRam2,address=address[0..2],out=outRAM2);
+    RAM8(in=in,load=selecionaRam3,address=address[0..2],out=outRAM3);
+    RAM8(in=in,load=selecionaRam4,address=address[0..2],out=outRAM4);
+    RAM8(in=in,load=selecionaRam5,address=address[0..2],out=outRAM5);
+    RAM8(in=in,load=selecionaRam6,address=address[0..2],out=outRAM6);
+    RAM8(in=in,load=selecionaRam7,address=address[0..2],out=outRAM7);
+
+    // Retorna o valor inserido:
+	Mux8Way16(a=outRAM0,b=outRAM1,c=outRAM2,d=outRAM3,e=outRAM4,f=outRAM5,g=outRAM6,h=outRAM7,sel=address[3..5],out=out);
+}

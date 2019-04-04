@@ -1,0 +1,35 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/03/a/RAM8.hdl
+
+/**
+ * Memory of 8 registers, each 16 bit-wide. Out holds the value
+ * stored at the memory location specified by address. If load==1, then 
+ * the in value is loaded into the memory location specified by address 
+ * (the loaded value will be emitted to out from the next time step onward).
+ */
+
+CHIP RAM8 {
+    IN in[16], load, address[3];
+    OUT out[16];
+
+    PARTS:
+    // Put your code here:
+
+    // Seleciona em qual registrador o input deve ser carregado quando load = 1:
+    DMux8Way(in=load,sel=address,a=selecionaReg0,b=selecionaReg1,c=selecionaReg2,d=selecionaReg3,e=selecionaReg4,f=selecionaReg5,g=selecionaReg6,h=selecionaReg7);
+
+    // Carrega o registrador selecionado com a entrada:
+    Register(in=in,load=selecionaReg0,out=outREG0);
+    Register(in=in,load=selecionaReg1,out=outREG1);
+    Register(in=in,load=selecionaReg2,out=outREG2);
+    Register(in=in,load=selecionaReg3,out=outREG3);
+    Register(in=in,load=selecionaReg4,out=outREG4);
+    Register(in=in,load=selecionaReg5,out=outREG5);
+    Register(in=in,load=selecionaReg6,out=outREG6);
+    Register(in=in,load=selecionaReg7,out=outREG7);
+
+    // Retorna o valor inserido:
+	Mux8Way16(a=outREG0,b=outREG1,c=outREG2,d=outREG3,e=outREG4,f=outREG5,g=outREG6,h=outREG7,sel=address,out=out);
+}
