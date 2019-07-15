@@ -1,0 +1,198 @@
+function Calculator.new 0
+push constant 0
+call Memory.alloc 1
+pop pointer 0
+push pointer 0
+return
+function Calculator.soma 2
+push constant 0
+pop local 0
+push constant 0
+pop local 1
+label WHILE_EXP0
+push local 1
+push argument 1
+lt
+not
+if-goto WHILE_END0
+push local 0
+push local 1
+push argument 0
+add
+pop pointer 1
+push that 0
+add
+pop local 0
+push local 1
+push constant 1
+add
+pop local 1
+goto WHILE_EXP0
+label WHILE_END0
+push local 0
+return
+function Calculator.subtracao 2
+push constant 0
+push argument 0
+add
+pop pointer 1
+push that 0
+pop local 0
+push constant 1
+pop local 1
+label WHILE_EXP0
+push local 1
+push argument 1
+lt
+not
+if-goto WHILE_END0
+push local 0
+push local 1
+push argument 0
+add
+pop pointer 1
+push that 0
+sub
+pop local 0
+push local 1
+push constant 1
+add
+pop local 1
+goto WHILE_EXP0
+label WHILE_END0
+push local 0
+return
+function Calculator.multiplicacao 2
+push constant 1
+pop local 0
+push constant 0
+pop local 1
+label WHILE_EXP0
+push local 1
+push argument 1
+lt
+not
+if-goto WHILE_END0
+push local 0
+push local 1
+push argument 0
+add
+pop pointer 1
+push that 0
+call Math.multiply 2
+pop local 0
+push local 1
+push constant 1
+add
+pop local 1
+goto WHILE_EXP0
+label WHILE_END0
+push local 0
+return
+function Calculator.divisao_inteira 1
+push argument 0
+push argument 1
+call Math.divide 2
+pop local 0
+push local 0
+return
+function Calculator.divisao_resto 1
+push argument 0
+push argument 1
+push argument 0
+push argument 1
+call Calculator.divisao_inteira 2
+call Math.multiply 2
+sub
+pop local 0
+push local 0
+return
+function Calculator.media 1
+push argument 0
+push argument 1
+call Calculator.soma 2
+push argument 1
+call Math.divide 2
+pop local 0
+push local 0
+return
+function Calculator.max 2
+push constant 0
+push argument 0
+add
+pop pointer 1
+push that 0
+pop local 0
+push constant 1
+pop local 1
+label WHILE_EXP0
+push local 1
+push argument 1
+lt
+not
+if-goto WHILE_END0
+push local 1
+push argument 0
+add
+pop pointer 1
+push that 0
+push local 0
+gt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 1
+push argument 0
+add
+pop pointer 1
+push that 0
+pop local 0
+label IF_FALSE0
+push local 1
+push constant 1
+add
+pop local 1
+goto WHILE_EXP0
+label WHILE_END0
+push local 0
+return
+function Calculator.min 2
+push constant 0
+push argument 0
+add
+pop pointer 1
+push that 0
+pop local 0
+push constant 1
+pop local 1
+label WHILE_EXP0
+push local 1
+push argument 1
+lt
+not
+if-goto WHILE_END0
+push local 1
+push argument 0
+add
+pop pointer 1
+push that 0
+push local 0
+lt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 1
+push argument 0
+add
+pop pointer 1
+push that 0
+pop local 0
+label IF_FALSE0
+push local 1
+push constant 1
+add
+pop local 1
+goto WHILE_EXP0
+label WHILE_END0
+push local 0
+return

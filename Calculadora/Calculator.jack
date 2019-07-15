@@ -1,0 +1,85 @@
+
+class Calculator {
+	
+	constructor Calculator new() {
+		return this;
+	}
+	
+	function int soma(Array a, int len) {
+		var int sum, i;
+		let sum = 0;
+		let i = 0;
+		while (i < len){
+			let sum = sum + a[i];
+			let i = i + 1;
+		}
+		return sum;
+	}
+	
+	function int subtracao(Array a, int len) {
+		var int sub, i;
+		let sub = a[0];
+		let i = 1;
+		while (i < len){
+			let sub = sub - a[i];
+			let i = i + 1;
+		}
+		return sub;
+	}
+	
+	function int multiplicacao(Array a, int len) {
+		var int mult, i;
+		let mult = 1;
+		let i = 0;
+		while (i < len){
+			let mult = mult * a[i];
+			let i = i + 1;
+		}
+		return mult;
+	}
+	
+	function int divisao_inteira(int x, int y) {
+		var int div;
+		let div = x / y;
+		return div;
+	}
+	
+	function int divisao_resto(int x, int y) {
+		var int resto;
+		let resto = x - (y*Calculator.divisao_inteira(x,y));
+		return resto;
+	}
+	
+	function int media(Array a, int len) {
+		var int avg;
+		let avg = (Calculator.soma(a,len) / len);
+		return avg;
+	}
+	
+	function int max(Array a, int len) {
+		var int max, i;
+		let max = a[0];
+		let i = 1;
+		while (i < len){
+			if (a[i] > max){
+				let max = a[i];
+			}
+			let i = i + 1;
+		}
+		return max;
+	}
+	
+	function int min(Array a, int len) {
+		var int min, i;
+		let min = a[0];
+		let i = 1;
+		while (i < len){
+			if (a[i] < min){
+				let min = a[i];
+			}
+			let i = i + 1;
+		}
+		return min;
+	}
+	
+}
